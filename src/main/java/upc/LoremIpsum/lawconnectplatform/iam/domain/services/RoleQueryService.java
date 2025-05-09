@@ -1,0 +1,13 @@
+package upc.LoremIpsum.lawconnectplatform.iam.domain.services;
+
+import upc.LoremIpsum.lawconnectplatform.iam.domain.model.entities.Role;
+import upc.LoremIpsum.lawconnectplatform.iam.domain.model.queries.GetAllRolesQuery;
+import upc.LoremIpsum.lawconnectplatform.iam.domain.model.queries.GetRoleByNameQuery;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface RoleQueryService {
+    List<Role> handle(GetAllRolesQuery query);
+    Optional<Role> handle(GetRoleByNameQuery query);
+}
