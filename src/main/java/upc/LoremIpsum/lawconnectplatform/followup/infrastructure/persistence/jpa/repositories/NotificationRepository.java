@@ -1,0 +1,14 @@
+package upc.LoremIpsum.lawconnectplatform.followup.infrastructure.persistence.jpa.repositories;
+
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.aggregates.Notification;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface NotificationRepository extends JpaRepository<Notification, Long> {
+    List<Notification> findAllByConsultationId(Long consultationId);
+    List<Notification> findAllByClientId(Long clientId);
+}

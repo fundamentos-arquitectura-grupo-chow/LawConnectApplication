@@ -1,0 +1,81 @@
+package upc.LoremIpsum.lawconnectplatform.followup.interfaces.rest;
+
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.commands.DeleteNotificationCommand;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.queries.GetAllNotificationByConsultationIdQuery;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.queries.GetAllNotificationsByClientIdQuery;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.queries.GetNotificationByIdQuery;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.services.NotificationCommandService;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.services.NotificationQueryService;
+import upc.LoremIpsum.lawconnectplatform.followup.interfaces.rest.resources.CreateNotificationResource;
+import upc.LoremIpsum.lawconnectplatform.followup.interfaces.rest.resources.NotificationResource;
+import upc.LoremIpsum.lawconnectplatform.followup.interfaces.rest.transform.CreateNotificationCommandFromResourceAssembler;
+import upc.LoremIpsum.lawconnectplatform.followup.interfaces.rest.transform.NotificationResourceFromEntityAssembler;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/api/v1/notification", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Notifications", description = "Notifications Endpoints")
+public class NotificationController {
+
+    private final NotificationCommandService notificationCommandService;
+    private final NotificationQueryService notificationQueryService;
+
+    public NotificationController(NotificationCommandService notificationCommandService, NotificationQueryService notificationQueryService) {
+        this.notificationCommandService = notificationCommandService;
+        this.notificationQueryService = notificationQueryService;
+    }
+
+    @PostMapping
+    public ResponseEntity<NotificationResource> createNotification(@RequestBody CreateNotificationResource createNotificationResource) {
+        var createNotificationCommand = CreateNotificationCommandFromResourceAssembler.toCommandFromResource(createNotificationResource);
+        var notification = notificationCommandService.handle(createNotificationCommand);
+        if(notification.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var notificationResource = NotificationResourceFromEntityAssembler.toResourceFromEntity(notification.get());
+        return new ResponseEntity<>(notificationResource, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{notificationId}")
+    public ResponseEntity<NotificationResource> getNotificationById(@PathVariable Long notificationId) {
+        var getNotificationByIdQuery = new GetNotificationByIdQuery(notificationId);
+        var notification = notificationQueryService.handle(getNotificationByIdQuery);
+        if(notification.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var notificationResource = NotificationResourceFromEntityAssembler.toResourceFromEntity(notification.get());
+        return ResponseEntity.ok(notificationResource);
+    }
+
+    @GetMapping("/legal-case/{consultationId}")
+    public ResponseEntity<List<NotificationResource>> getAllNotificationsByConsultationId(@PathVariable Long consultationId) {
+        var notifications = notificationQueryService.handle(new GetAllNotificationByConsultationIdQuery(consultationId));
+        var notificationsResources = notifications.stream()
+                .map(NotificationResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(notificationsResources);
+    }
+
+
+    @GetMapping("/client/{clientId}")
+    public ResponseEntity<List<NotificationResource>> getAllNotificationsByClientId(@PathVariable Long clientId) {
+        var notifications = notificationQueryService.handle(new GetAllNotificationsByClientIdQuery(clientId));
+        var notificationsResources = notifications.stream()
+                .map(NotificationResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(notificationsResources);
+    }
+
+    @DeleteMapping("/{notificationId}")
+    public ResponseEntity<?> deleteNotification(@PathVariable Long notificationId) {
+        notificationCommandService.handle(new DeleteNotificationCommand(notificationId));
+        return ResponseEntity.ok("Notification deleted successfully");
+    }
+
+}
