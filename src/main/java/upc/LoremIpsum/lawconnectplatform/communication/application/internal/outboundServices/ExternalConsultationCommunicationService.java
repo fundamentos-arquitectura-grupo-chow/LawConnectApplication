@@ -1,9 +1,9 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices;
 
-import com.loremipsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
-import com.loremipsum.lawconnectplatform.consultation.interfaces.acl.ConsultationContextFacade;
-import com.loremipsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
-import com.loremipsum.lawconnectplatform.feeing.interfaces.rest.resources.PaymentResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.acl.ConsultationContextFacade;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.feeing.interfaces.rest.resources.PaymentResource;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

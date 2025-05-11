@@ -1,8 +1,8 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.acl;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.acl;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.DeleteChatRoomCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.services.ChatRoomCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.DeleteChatRoomCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.ChatRoomCommandService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 

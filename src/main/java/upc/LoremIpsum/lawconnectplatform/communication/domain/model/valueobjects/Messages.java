@@ -1,6 +1,6 @@
-package com.loremipsum.lawconnectplatform.communication.domain.model.valueobjects;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.model.valueobjects;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.OneToMany;

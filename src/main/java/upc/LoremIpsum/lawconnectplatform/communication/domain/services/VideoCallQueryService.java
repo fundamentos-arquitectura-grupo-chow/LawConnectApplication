@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.domain.services;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.services;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
 
 import java.util.List;
 import java.util.Optional;

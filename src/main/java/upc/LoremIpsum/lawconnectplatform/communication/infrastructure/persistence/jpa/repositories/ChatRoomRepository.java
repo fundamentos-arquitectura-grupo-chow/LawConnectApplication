@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories;
+package upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
-import com.loremipsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

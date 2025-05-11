@@ -1,0 +1,132 @@
+package upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest;
+
+import upc.LoremIpsum.lawconnectplatform.consultation.application.internal.outboundServices.ExternalPaymentConsultationServices;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.commands.ApproveConsultationCommand;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.commands.DeleteConsultationCommand;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.commands.RejectConsultationCommand;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.queries.GetAllConsultationsByClientIdAndLawyerIdQuery;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.queries.GetAllConsultationsByClientIdQuery;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.queries.GetAllConsultationsByLawyerIdQuery;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.queries.GetConsultationByIdQuery;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.services.ConsultationCommandService;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.services.ConsultationQueryService;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.AddPaymentResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.CreateConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.transform.ConsultationResourceFromEntityAssembler;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.transform.CreateConsultationCommandFromResourceAssembler;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.transform.CreatePaymentCommandFromResourceAssembler;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(value="/api/v1/consultation", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Consultations", description = "Consultation Management Endpoints")
+public class ConsultationController {
+
+    private final ConsultationCommandService consultationCommandService;
+    private final ConsultationQueryService consultationQueryService;
+    private final ExternalPaymentConsultationServices externalPaymentConsultationServices;
+
+    public ConsultationController(ConsultationCommandService consultationCommandService, ConsultationQueryService consultationQueryService, ExternalPaymentConsultationServices externalPaymentConsultationServices) {
+        this.consultationCommandService = consultationCommandService;
+        this.consultationQueryService = consultationQueryService;
+        this.externalPaymentConsultationServices = externalPaymentConsultationServices;
+    }
+
+    @PostMapping
+    public ResponseEntity<ConsultationResource> createConsultation(@RequestBody CreateConsultationResource resource){
+        var createConsultationCommand = CreateConsultationCommandFromResourceAssembler.toCommandFromResource(resource);
+        var consultationId = consultationCommandService.handle(createConsultationCommand);
+
+        if (consultationId == 0L) return ResponseEntity.badRequest().build();
+        var getConsultationByIdQuery = new GetConsultationByIdQuery(consultationId);
+        var consultation = consultationQueryService.handle(getConsultationByIdQuery);
+
+        if (consultation.isEmpty()) return ResponseEntity.badRequest().build();
+
+        var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.get().getPayments());
+
+        var consultationResource = ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation.get(), paymentsResource);
+        return new ResponseEntity<>(consultationResource, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{consultationId}")
+    public ResponseEntity<ConsultationResource> getConsultation(@PathVariable Long consultationId){
+        var getConsultationByIdQuery = new GetConsultationByIdQuery(consultationId);
+        var consultation = consultationQueryService.handle(getConsultationByIdQuery);
+
+        if (consultation.isEmpty()) return ResponseEntity.notFound().build();
+
+        var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.get().getPayments());
+
+        var consultationResource = ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation.get(), paymentsResource);
+        return ResponseEntity.ok(consultationResource);
+    }
+
+    @GetMapping("/lawyerId/{lawyerId}")
+    public ResponseEntity<List<ConsultationResource>> getAllConsultationsByLawyerId(@PathVariable Long lawyerId){
+        var getAllConsultationsByLawyerIdQuery = new GetAllConsultationsByLawyerIdQuery(lawyerId);
+        var consultations = consultationQueryService.handle(getAllConsultationsByLawyerIdQuery);
+
+        var consultationResources = consultations.stream().map( consultation ->{
+                    var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.getPayments());
+                    return ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation, paymentsResource);
+                }
+        ).toList();
+        return ResponseEntity.ok(consultationResources);
+    }
+
+    @GetMapping("/clientId/{clientId}")
+    public ResponseEntity<List<ConsultationResource>> getAllConsultationsByClientId(@PathVariable Long clientId){
+        var getAllConsultationsByClientIdQuery = new GetAllConsultationsByClientIdQuery(clientId);
+        var consultations = consultationQueryService.handle(getAllConsultationsByClientIdQuery);
+        var consultationResources = consultations.stream().map(consultation -> {
+            var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.getPayments());
+            return ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation, paymentsResource);
+        }).toList();
+        return ResponseEntity.ok(consultationResources);
+    }
+
+    @GetMapping("/lawyerId/{lawyerId}/clientId/{clientId}")
+    public ResponseEntity<List<ConsultationResource>> getAllConsultationsByLawyerIdAndClientId(@PathVariable Long lawyerId, @PathVariable Long clientId){
+        var getAllConsultationsByLawyerIdQuery = new GetAllConsultationsByClientIdAndLawyerIdQuery(clientId, lawyerId);
+        var consultations = consultationQueryService.handle(getAllConsultationsByLawyerIdQuery);
+        var consultationResources = consultations.stream().map(consultation -> {
+            var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.getPayments());
+            return ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation, paymentsResource);
+        }).toList();
+        return ResponseEntity.ok(consultationResources);
+    }
+
+    @DeleteMapping("/{consultationId}")
+    public ResponseEntity<?> deleteConsultation(@PathVariable Long consultationId){
+        var deleteConsultationCommand = new DeleteConsultationCommand(consultationId);
+        consultationCommandService.handle(deleteConsultationCommand);
+        return ResponseEntity.ok("Consultation deleted successfully");
+    }
+
+    @PostMapping("/payments")
+    public ResponseEntity<?> addPaymentToConsultation(@RequestBody AddPaymentResource resource){
+        var createPaymentCommand = CreatePaymentCommandFromResourceAssembler.toCommandFromResource(resource);
+        consultationCommandService.handle(createPaymentCommand);
+        return ResponseEntity.ok("Payment added successfully");
+    }
+
+    @PatchMapping("/approve/{consultationId}")
+    public ResponseEntity<?> approveConsultation(@PathVariable Long consultationId){
+        consultationCommandService.handle(new ApproveConsultationCommand(consultationId));
+        return ResponseEntity.ok("Consultation approved successfully");
+    }
+
+    @PatchMapping("/reject/{consultationId}")
+    public ResponseEntity<?> declineConsultation(@PathVariable Long consultationId){
+        consultationCommandService.handle(new RejectConsultationCommand(consultationId));
+        return ResponseEntity.ok("Consultation approved successfully");
+    }
+}

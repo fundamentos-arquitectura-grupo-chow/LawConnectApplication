@@ -1,9 +1,9 @@
-package com.loremipsum.lawconnectplatform.communication.domain.model.aggregates;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.CreateAppointmentCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.valueobjects.CommunicationStatus;
-import com.loremipsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
-import com.loremipsum.lawconnectplatform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.CreateAppointmentCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.valueobjects.CommunicationStatus;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
+import upc.LoremIpsum.lawconnectplatform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import lombok.Getter;
 

@@ -1,8 +1,8 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.ChatRoomResource;
-import com.loremipsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.ChatRoomResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
 
 public class ChatRoomResourceFromEntityAssembler {
     public static ChatRoomResource toResourceFromEntity(ChatRoom entity, ConsultationResource consultationResource){

@@ -1,4 +1,4 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources;
 
 public record CreateVideoCallResource(
         Long consultationId,

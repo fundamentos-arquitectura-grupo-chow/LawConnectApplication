@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices;
 
-import com.loremipsum.lawconnectplatform.followup.domain.model.commands.CreateNotificationCommand;
-import com.loremipsum.lawconnectplatform.followup.interfaces.acl.FollowUpContextFacade;
+import upc.LoremIpsum.lawconnectplatform.followup.domain.model.commands.CreateNotificationCommand;
+import upc.LoremIpsum.lawconnectplatform.followup.interfaces.acl.FollowUpContextFacade;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,12 +1,12 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetChatRoomByConsultationIdQuery;
-import com.loremipsum.lawconnectplatform.communication.domain.services.ChatRoomCommandService;
-import com.loremipsum.lawconnectplatform.communication.domain.services.ChatRoomQueryService;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.ChatRoomResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.ChatRoomResourceFromEntityAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetChatRoomByConsultationIdQuery;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.ChatRoomCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.ChatRoomQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.ChatRoomResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.ChatRoomResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

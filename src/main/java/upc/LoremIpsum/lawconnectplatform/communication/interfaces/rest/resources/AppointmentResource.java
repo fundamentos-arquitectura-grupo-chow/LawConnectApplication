@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources;
 
-import com.loremipsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
-import com.loremipsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
 
 public record AppointmentResource(
         Long id,

@@ -1,8 +1,8 @@
-package com.loremipsum.lawconnectplatform.communication.domain.services;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.services;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.DeleteChatRoomCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.CreateChatRoomCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.DeleteChatRoomCommand;
 
 import java.util.Optional;
 

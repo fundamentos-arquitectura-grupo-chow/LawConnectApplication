@@ -1,13 +1,13 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
-import com.loremipsum.lawconnectplatform.communication.domain.services.VideoCallCommandService;
-import com.loremipsum.lawconnectplatform.communication.domain.services.VideoCallQueryService;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.CreateVideoCallResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.VideoCallResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.CreateVideoCallCommandFromResourceAssembler;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.VideoCallResourceFromEntityAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.VideoCallCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.VideoCallQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.CreateVideoCallResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.VideoCallResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.CreateVideoCallCommandFromResourceAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.VideoCallResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

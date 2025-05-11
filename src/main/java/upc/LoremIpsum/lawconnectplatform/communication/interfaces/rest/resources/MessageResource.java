@@ -1,6 +1,6 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
 
 public record MessageResource (
         Long id,
