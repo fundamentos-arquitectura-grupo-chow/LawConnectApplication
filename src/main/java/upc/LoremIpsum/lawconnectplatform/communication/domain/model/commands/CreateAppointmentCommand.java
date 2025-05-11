@@ -1,4 +1,4 @@
-package com.loremipsum.lawconnectplatform.communication.domain.model.commands;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands;
 
 public record CreateAppointmentCommand(
         Long consultationId,

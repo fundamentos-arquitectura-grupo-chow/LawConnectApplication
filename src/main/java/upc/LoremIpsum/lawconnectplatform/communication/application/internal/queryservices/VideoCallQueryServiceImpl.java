@@ -1,10 +1,10 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.queryservices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.queryservices;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
-import com.loremipsum.lawconnectplatform.communication.domain.services.VideoCallQueryService;
-import com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.VideoCallRepository;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllVideoCallsByConsultationId;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.VideoCallQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.VideoCallRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

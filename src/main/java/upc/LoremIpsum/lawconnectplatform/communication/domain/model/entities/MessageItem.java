@@ -1,10 +1,10 @@
-package com.loremipsum.lawconnectplatform.communication.domain.model.entities;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.valueobjects.SenderType;
-import com.loremipsum.lawconnectplatform.shared.domain.model.entities.AuditableModel;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.ChatRoom;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.valueobjects.SenderType;
+import upc.LoremIpsum.lawconnectplatform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

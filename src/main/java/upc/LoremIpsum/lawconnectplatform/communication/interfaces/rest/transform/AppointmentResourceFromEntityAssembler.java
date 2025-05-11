@@ -1,8 +1,8 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.Appointment;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.AppointmentResource;
-import com.loremipsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.Appointment;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.AppointmentResource;
+import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.ConsultationResource;
 
 public class AppointmentResourceFromEntityAssembler {
     public static AppointmentResource toResourceFromEntity(Appointment entity, ConsultationResource consultationResource) {

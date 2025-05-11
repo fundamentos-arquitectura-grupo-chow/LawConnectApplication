@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.domain.services;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.services;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllMessagesByChatRoomIdQuery;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllMessagesByChatRoomIdQuery;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.loremipsum.lawconnectplatform.communication.domain.model.valueobjects;
+package upc.LoremIpsum.lawconnectplatform.communication.domain.model.valueobjects;
 
 public enum SenderType {
     CLIENT(1),

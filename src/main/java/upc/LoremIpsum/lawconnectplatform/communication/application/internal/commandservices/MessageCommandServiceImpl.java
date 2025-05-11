@@ -1,11 +1,11 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.commandservices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.commandservices;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
-import com.loremipsum.lawconnectplatform.communication.domain.services.MessageCommandService;
-import com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.ChatRoomRepository;
-import com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.MessageRepository;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.entities.MessageItem;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.MessageCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.ChatRoomRepository;
+import upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.MessageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.AddMessageByChatRoomIdResource;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.AddMessageByChatRoomIdCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.AddMessageByChatRoomIdResource;
 
 public class AddMessageByChatRoomIdCommandFromResourceAssembler {
     public static AddMessageByChatRoomIdCommand toCommandFromResource(AddMessageByChatRoomIdResource resource){

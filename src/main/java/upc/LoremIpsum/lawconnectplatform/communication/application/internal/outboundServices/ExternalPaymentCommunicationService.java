@@ -1,7 +1,7 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices;
 
-import com.loremipsum.lawconnectplatform.feeing.domain.model.aggregates.Payment;
-import com.loremipsum.lawconnectplatform.feeing.interfaces.acl.PaymentContextFacade;
+import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.aggregates.Payment;
+import upc.LoremIpsum.lawconnectplatform.feeing.interfaces.acl.PaymentContextFacade;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

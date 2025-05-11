@@ -1,10 +1,10 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.queryservices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.queryservices;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.Appointment;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllAppointmentsByConsultationIdQuery;
-import com.loremipsum.lawconnectplatform.communication.domain.services.AppointmentQueryService;
-import com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.AppointmentRepository;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.Appointment;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllAppointmentsByConsultationIdQuery;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.AppointmentQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.AppointmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

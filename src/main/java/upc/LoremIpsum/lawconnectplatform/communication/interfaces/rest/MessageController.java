@@ -1,12 +1,12 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest;
 
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllMessagesByChatRoomIdQuery;
-import com.loremipsum.lawconnectplatform.communication.domain.services.MessageCommandService;
-import com.loremipsum.lawconnectplatform.communication.domain.services.MessageQueryService;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.AddMessageByChatRoomIdResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.MessageResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.AddMessageByChatRoomIdCommandFromResourceAssembler;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.MessageResourceFromEntityAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllMessagesByChatRoomIdQuery;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.MessageCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.MessageQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.AddMessageByChatRoomIdResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.MessageResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.AddMessageByChatRoomIdCommandFromResourceAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.MessageResourceFromEntityAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

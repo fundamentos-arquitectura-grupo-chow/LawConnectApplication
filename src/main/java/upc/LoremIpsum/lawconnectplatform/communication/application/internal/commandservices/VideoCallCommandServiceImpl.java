@@ -1,12 +1,12 @@
-package com.loremipsum.lawconnectplatform.communication.application.internal.commandservices;
+package upc.LoremIpsum.lawconnectplatform.communication.application.internal.commandservices;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalFollowUpCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalPaymentCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
-import com.loremipsum.lawconnectplatform.communication.domain.model.commands.CreateVideoCallCommand;
-import com.loremipsum.lawconnectplatform.communication.domain.services.VideoCallCommandService;
-import com.loremipsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.VideoCallRepository;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalFollowUpCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalPaymentCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.aggregates.VideoCall;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.commands.CreateVideoCallCommand;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.VideoCallCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.infrastructure.persistence.jpa.repositories.VideoCallRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

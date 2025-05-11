@@ -1,13 +1,13 @@
-package com.loremipsum.lawconnectplatform.communication.interfaces.rest;
+package upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest;
 
-import com.loremipsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
-import com.loremipsum.lawconnectplatform.communication.domain.model.queries.GetAllAppointmentsByConsultationIdQuery;
-import com.loremipsum.lawconnectplatform.communication.domain.services.AppointmentCommandService;
-import com.loremipsum.lawconnectplatform.communication.domain.services.AppointmentQueryService;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.AppointmentResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.resources.CreateAppointmentResource;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.AppointmentResourceFromEntityAssembler;
-import com.loremipsum.lawconnectplatform.communication.interfaces.rest.transform.CreateAppointmentCommandFromResourceAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.application.internal.outboundServices.ExternalConsultationCommunicationService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.model.queries.GetAllAppointmentsByConsultationIdQuery;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.AppointmentCommandService;
+import upc.LoremIpsum.lawconnectplatform.communication.domain.services.AppointmentQueryService;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.AppointmentResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.resources.CreateAppointmentResource;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.AppointmentResourceFromEntityAssembler;
+import upc.LoremIpsum.lawconnectplatform.communication.interfaces.rest.transform.CreateAppointmentCommandFromResourceAssembler;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
