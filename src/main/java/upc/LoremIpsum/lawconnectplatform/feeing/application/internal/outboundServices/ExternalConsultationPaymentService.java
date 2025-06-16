@@ -2,7 +2,6 @@ package upc.LoremIpsum.lawconnectplatform.feeing.application.internal.outboundSe
 
 import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
 import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.acl.ConsultationContextFacade;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,6 +13,10 @@ public class ExternalConsultationPaymentService {
 
     public ExternalConsultationPaymentService(ConsultationContextFacade consultationContextFacade) {
         this.consultationContextFacade = consultationContextFacade;
+    }
+
+    public boolean existsConsultationById(Long consultationId) {
+        return consultationContextFacade.getConsultationById(consultationId).isPresent();
     }
 
     public void changeConsultationStatus(Long consultationId) {

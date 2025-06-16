@@ -21,7 +21,6 @@ public class ConsultationQueryServiceImpl implements ConsultationQueryService {
         this.externalPaymentConsultationServices = externalPaymentConsultationServices;
     }
 
-
     @Override
     public Optional<Consultation> handle(GetConsultationByIdQuery query) {
         return consultationRepository.findById(query.consultationId());
@@ -30,26 +29,41 @@ public class ConsultationQueryServiceImpl implements ConsultationQueryService {
     @Override
     public Optional<Consultation> handle(GetConsultationByLawyerIdAndPaymentIdQuery query) {
         var payment = externalPaymentConsultationServices.getPaymentById(query.paymentId());
-        return payment.flatMap(value -> consultationRepository.findByPayments(List.of(value))
-                .filter(consultation -> {
-                    consultation.getLawyerId();
-                    return false;
-                }));
+        if (payment.isEmpty()) {
+            return Optional.empty();
+        }
+
+        // Buscar la consulta por el consultationId del pago
+        var consultationId = payment.get().getConsultationId();
+        var consultation = consultationRepository.findById(consultationId);
+
+        // Verificar si el lawyerId coincide
+        return consultation.filter(c -> c.getLawyerId().equals(query.lawyerId()));
     }
 
     @Override
     public Optional<Consultation> handle(GetConsultationByPaymentIdQuery query) {
         var payment = externalPaymentConsultationServices.getPaymentById(query.paymentId());
-        if (payment.isPresent()) {
-            return consultationRepository.findByPayments(List.of(payment.get()));
+        if (payment.isEmpty()) {
+            return Optional.empty();
         }
-        return Optional.empty();
+
+        // Buscar la consulta por el consultationId del pago
+        var consultationId = payment.get().getConsultationId();
+        return consultationRepository.findById(consultationId);
     }
 
     @Override
     public Optional<List<Payment>> handle(GetAllPaymentsByConsultationIdQuery query) {
+        // Usar el ExternalPaymentConsultationServices para obtener los pagos por consultationId
         var consultation = consultationRepository.findById(query.consultationId());
-        return consultation.map(Consultation::getPayments);
+        if (consultation.isEmpty()) {
+            return Optional.empty();
+        }
+
+        // Obtener pagos desde el servicio externo
+        var payments = externalPaymentConsultationServices.getPaymentsByConsultationId(query.consultationId());
+        return Optional.of(payments);
     }
 
     @Override

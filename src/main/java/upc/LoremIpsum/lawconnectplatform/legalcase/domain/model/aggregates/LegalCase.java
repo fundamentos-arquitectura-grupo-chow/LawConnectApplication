@@ -1,6 +1,5 @@
 package upc.LoremIpsum.lawconnectplatform.legalcase.domain.model.aggregates;
 
-import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
 import upc.LoremIpsum.lawconnectplatform.legalcase.domain.model.commands.CreateLegalCaseCommand;
 import upc.LoremIpsum.lawconnectplatform.legalcase.domain.model.valueobjects.Documents;
 import upc.LoremIpsum.lawconnectplatform.legalcase.domain.model.valueobjects.LegalCaseStatus;
@@ -24,9 +23,8 @@ public class LegalCase extends AuditableAbstractAggregateRoot<LegalCase> {
     @Column(nullable = false)
     private LegalCaseStatus status;
 
-    @OneToOne
-    @JoinColumn(name = "consultation", nullable = false)
-    private Consultation consultation;
+    @Column(name = "consultation_id", nullable = false)
+    private Long consultationId;
 
     @Embedded
     private Documents documents;
@@ -37,11 +35,11 @@ public class LegalCase extends AuditableAbstractAggregateRoot<LegalCase> {
     }
 
 
-    public LegalCase(CreateLegalCaseCommand command, Consultation consultation) {
+    public LegalCase(CreateLegalCaseCommand command) {
         this();
         this.title = command.title();
         this.description = command.description();
-        this.consultation = consultation;
+        this.consultationId = command.consultationId();
     }
 
     public void close() {

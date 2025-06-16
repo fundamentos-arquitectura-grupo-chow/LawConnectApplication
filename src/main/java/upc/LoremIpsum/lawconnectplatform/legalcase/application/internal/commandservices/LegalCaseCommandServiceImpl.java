@@ -24,10 +24,13 @@ public class LegalCaseCommandServiceImpl implements LegalCaseCommandService {
 
     @Override
     public Optional<LegalCase> handle(CreateLegalCaseCommand command) {
+        var consultationResource = externalConsultationLegalCaseService.getConsultationResourceById(command.consultationId());
 
-        var consultation = externalConsultationLegalCaseService.getConsultationById(command.consultationId());
+        if (consultationResource.isEmpty()) {
+            return Optional.empty();
+        }
 
-        var legalCase = new LegalCase(command, consultation.get());
+        var legalCase = new LegalCase(command);
         legalCaseRepository.save(legalCase);
 
         return Optional.of(legalCase);
@@ -35,9 +38,11 @@ public class LegalCaseCommandServiceImpl implements LegalCaseCommandService {
 
     @Override
     public void handle(CloseLegalCaseCommand command) {
-            var legalCase = legalCaseRepository.findById(command.legalCaseId());
-            legalCase.ifPresent(LegalCase::close);
-            legalCaseRepository.save(legalCase.get());
+        var legalCase = legalCaseRepository.findById(command.legalCaseId());
+        legalCase.ifPresent(lc -> {
+            lc.close();
+            legalCaseRepository.save(lc);
+        });
     }
 
     @Override
@@ -45,6 +50,4 @@ public class LegalCaseCommandServiceImpl implements LegalCaseCommandService {
         var legalCase = legalCaseRepository.findById(command.legalCaseId());
         legalCase.ifPresent(legalCaseRepository::delete);
     }
-
-
 }

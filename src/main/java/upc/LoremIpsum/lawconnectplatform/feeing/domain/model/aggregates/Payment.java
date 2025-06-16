@@ -15,9 +15,8 @@ import lombok.Setter;
 @Entity
 public class Payment extends AuditableAbstractAggregateRoot<Payment> {
 
-    @ManyToOne
-    @JoinColumn(name = "consultation_id")
-    private Consultation consultation;
+    @Column(name = "consultation_id")
+    private Long consultationId;
 
     private Long clientId;
 
@@ -31,8 +30,9 @@ public class Payment extends AuditableAbstractAggregateRoot<Payment> {
     @Embedded
     private Card card;
 
-    public Payment(CreatePaymentCommand command, Consultation consultation) {
+    public Payment(CreatePaymentCommand command) {
         this();
+        this.consultationId = command.consultationId();
         this.amount = new PaymentAmount(
                 command.amount(),
                 Currency.fromId(command.currency())
@@ -40,12 +40,9 @@ public class Payment extends AuditableAbstractAggregateRoot<Payment> {
         this.clientId = command.clientId();
         this.status = PaymentStatus.PENDIENTE;
         this.card = new Card();
-        this.consultation = consultation;
     }
 
-    public Payment() {
-        this.consultation = new Consultation();
-    }
+    public Payment() {}
 
     public void updateCard(CompletePaymentCommand command) {
         this.card = new Card(command.cardNumber(), command.expirationDate(), command.cvv());

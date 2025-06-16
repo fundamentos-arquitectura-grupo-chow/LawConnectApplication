@@ -5,18 +5,12 @@ import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.events.Create
 import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.events.CreateDefaultPaymentEvent;
 import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.valueobjects.ApplicationStatus;
 import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.valueobjects.ConsultationType;
-import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.aggregates.Payment;
 import upc.LoremIpsum.lawconnectplatform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Setter
@@ -26,9 +20,6 @@ public class Consultation extends AuditableAbstractAggregateRoot<Consultation> {
     private Long lawyerId;
 
     private Long clientId;
-
-    @OneToMany(mappedBy = "consultation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Payment> payments = new ArrayList<>();
 
     @Column(nullable = false)
     @Size(max = 500)
@@ -60,7 +51,7 @@ public class Consultation extends AuditableAbstractAggregateRoot<Consultation> {
     }
 
     public void createDefaultPayment(Long consultationId, Long clientId, Double amount, Integer currency) {
-        this.registerEvent(new CreateDefaultPaymentEvent(this,consultationId, clientId, amount, currency));
+        this.registerEvent(new CreateDefaultPaymentEvent(this, consultationId, clientId, amount, currency));
     }
 
     public void createChatRoom() {
@@ -69,8 +60,4 @@ public class Consultation extends AuditableAbstractAggregateRoot<Consultation> {
         System.out.println("Chat room created");
     }
 
-    public void addPayment(Payment payment) {
-        System.out.println("Adding payment");
-        this.payments.add(payment);
-    }
 }

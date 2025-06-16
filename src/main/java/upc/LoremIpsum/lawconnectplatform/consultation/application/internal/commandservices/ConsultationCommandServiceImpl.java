@@ -132,16 +132,20 @@ public class ConsultationCommandServiceImpl implements ConsultationCommandServic
             throw new IllegalArgumentException("Consultation does not exist");
         }
         try {
-            var payment = externalPaymentConsultationServices.createPayment(
+            // Crear el pago - la relación se mantiene a través del consultationId
+            // que ya se establece al crear el payment
+            externalPaymentConsultationServices.createPayment(
                     consultation.get().getId(),
                     consultation.get().getClientId(),
                     command.amount(),
                     command.currency()
             );
             System.out.println("Payment created");
-            consultation.get().addPayment(payment.get());
+            // No es necesario llamar a addPayment porque la asociación se hace
+            // mediante el consultationId en el objeto Payment
         } catch (Exception e) {
-            throw new IllegalArgumentException("Error while creating payment: " + e.getMessage());
+            // Manejo de errores existente
+            throw new IllegalArgumentException("Error creating payment: " + e.getMessage());
         }
     }
 }

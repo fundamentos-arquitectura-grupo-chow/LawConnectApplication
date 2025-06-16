@@ -45,8 +45,13 @@ public class ConsultationContextFacade {
     }
 
     public Optional<ConsultationResource> createConsultationResource(Consultation consultation){
-        var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(consultation.getPayments());
+        // Obtener pagos mediante el servicio externo en lugar de consultation.getPayments()
+        var payments = externalPaymentConsultationServices.getPaymentsByConsultationId(consultation.getId());
+        var paymentsResource = externalPaymentConsultationServices.createPaymentListResource(payments);
+
         var consultationResource = ConsultationResourceFromEntityAssembler.toResourceFromEntity(consultation, paymentsResource);
         return Optional.of(consultationResource);
     }
+
+
 }

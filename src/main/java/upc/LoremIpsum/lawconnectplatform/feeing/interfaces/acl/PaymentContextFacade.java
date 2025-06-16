@@ -1,8 +1,10 @@
 package upc.LoremIpsum.lawconnectplatform.feeing.interfaces.acl;
 
+import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.queries.GetAllPaymentsByConsultationIdQuery;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.aggregates.Payment;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.commands.CreatePaymentCommand;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.commands.DeletePaymentCommand;
+import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.queries.GetAllPaymentByConsultationIdQuery;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.queries.GetPaymentByIdQuery;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.services.PaymentCommandService;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.services.PaymentQueryService;
@@ -33,11 +35,15 @@ public class PaymentContextFacade {
             Double amount,
             Integer currency
     ){
-        return paymentCommandService.handle(new CreatePaymentCommand(consultationId, clientId,amount,currency));
+        return paymentCommandService.handle(new CreatePaymentCommand(consultationId, clientId, amount, currency));
     }
 
     public Optional<Payment> getPaymentById(Long paymentId){
         return paymentQueryService.handle(new GetPaymentByIdQuery(paymentId));
+    }
+
+    public List<Payment> getPaymentsByConsultationId(Long consultationId){
+        return paymentQueryService.handle(new GetAllPaymentsByConsultationIdQuery(consultationId));
     }
 
     public void deletePaymentById(Long paymentId){
@@ -52,5 +58,4 @@ public class PaymentContextFacade {
                 .collect(Collectors.toList());
         return Optional.of(paymentsResources).orElseThrow();
     }
-
 }

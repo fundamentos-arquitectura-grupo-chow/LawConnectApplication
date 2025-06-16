@@ -29,9 +29,12 @@ public class ExternalPaymentConsultationServices {
         paymentContextFacade.deletePaymentById(paymentId);
     }
 
-    public List<PaymentResource> createPaymentListResource(
-            List<Payment> payment
-    ) {
-        return paymentContextFacade.createPaymentListResource(payment);
+    public List<PaymentResource> createPaymentListResource(List<Payment> payments) {
+        return paymentContextFacade.createPaymentListResource(payments);
+    }
+
+    // Agregar este método para obtener pagos por consultationId
+    public List<Payment> getPaymentsByConsultationId(Long consultationId) {
+        return paymentContextFacade.getPaymentsByConsultationId(consultationId);
     }
 }
