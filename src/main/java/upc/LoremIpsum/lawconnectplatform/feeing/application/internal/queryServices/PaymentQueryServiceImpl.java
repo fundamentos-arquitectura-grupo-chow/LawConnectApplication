@@ -24,8 +24,11 @@ public class PaymentQueryServiceImpl implements PaymentQueryService {
 
     @Override
     public List<Payment> handle(GetAllPaymentsByConsultationIdQuery query) {
-        var consultation = externalConsultationPaymentService.getConsultationById(query.consultationId());
-        return paymentRepository.findAllByConsultation(consultation.get());
+        boolean exists = externalConsultationPaymentService.existsConsultationById(query.consultationId());
+        if (!exists) {
+            return List.of();
+        }
+        return paymentRepository.findAllByConsultationId(query.consultationId());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package upc.LoremIpsum.lawconnectplatform.consultation.application.internal.outboundServices;
 
-import upc.LoremIpsum.lawconnectplatform.legalcase.domain.model.aggregates.LegalCase;
 import upc.LoremIpsum.lawconnectplatform.legalcase.interfaces.acl.LegalCaseContextFacade;
+import upc.LoremIpsum.lawconnectplatform.legalcase.interfaces.rest.resources.LegalCaseResource;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,10 +24,10 @@ public class ExternalLegalCaseConsultationService {
                 title,
                 description,
                 consultationId
-            );
+        );
     }
 
-    public Optional<LegalCase> getLegalCaseByConsultationId(Long consultationId){
+    public Optional<LegalCaseResource> getLegalCaseByConsultationId(Long consultationId){
         return legalCaseContextFacade.getLegalCaseByConsultationId(consultationId);
     }
 

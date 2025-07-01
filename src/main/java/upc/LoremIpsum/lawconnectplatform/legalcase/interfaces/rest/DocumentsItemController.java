@@ -41,7 +41,7 @@ public class DocumentsItemController {
         var getDocumentItemByIdQuery = new GetDocumentByIdQuery(documentId);
         var documentItem = documentsQueryService.handle(getDocumentItemByIdQuery);
         if (documentItem.isEmpty()) return ResponseEntity.notFound().build();
-        var documentItemResource = DocumentsItemResourceFromEntityAssembler.toEntityFromResource(documentItem.get());
+        var documentItemResource = DocumentsItemResourceFromEntityAssembler.toResourceFromEntity(documentItem.get());
         return ResponseEntity.ok(documentItemResource);
     }
 
@@ -50,7 +50,7 @@ public class DocumentsItemController {
         var getAllDocumentItemsByLegalCaseIdQuery = new GetAllDocumentsByLegalCaseQuery(legalCaseId);
         var documentItems = documentsQueryService.handle(getAllDocumentItemsByLegalCaseIdQuery);
         var documentItemResources = documentItems.stream()
-                .map(DocumentsItemResourceFromEntityAssembler::toEntityFromResource)
+                .map(DocumentsItemResourceFromEntityAssembler::toResourceFromEntity)
                 .toList();
         return ResponseEntity.ok(documentItemResources);
     }

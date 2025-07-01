@@ -32,9 +32,15 @@ public class DocumentsCommandServiceImpl implements DocumentsCommandService {
         if (legalCase.isEmpty()) {
             throw new IllegalArgumentException("Legal case not found");
         }
+
         var document = new DocumentsItem(command, legalCase.get());
 
-        var consultation = externalConsultationLegalCaseService.getConsultationById(legalCase.get().getConsultation().getId());
+        var consultationResource = externalConsultationLegalCaseService
+                .getConsultationResourceById(legalCase.get().getConsultationId());
+
+        if (consultationResource.isEmpty()) {
+            throw new IllegalArgumentException("Consultation not found");
+        }
 
         legalCase.get().getDocuments().addDocumentItem(document);
 
@@ -44,12 +50,11 @@ public class DocumentsCommandServiceImpl implements DocumentsCommandService {
                         "\n added to legal case " + document.getDescription() +
                         "\n ype: " + document.getType() +
                         "\n Status: " + document.getStatus(),
-                        consultation.get().getClientId(),
-                        consultation.get().getId()
+                consultationResource.get().clientId(),
+                consultationResource.get().id()
         );
 
         documentsRepository.save(document);
-
     }
 
     @Override
@@ -65,14 +70,19 @@ public class DocumentsCommandServiceImpl implements DocumentsCommandService {
             throw new IllegalArgumentException("Legal case not found");
         }
 
-        var consultation = externalConsultationLegalCaseService.getConsultationById(legalCase.get().getConsultation().getId());
+        var consultationResource = externalConsultationLegalCaseService
+                .getConsultationResourceById(legalCase.get().getConsultationId());
+
+        if (consultationResource.isEmpty()) {
+            throw new IllegalArgumentException("Consultation not found");
+        }
 
         externalFollowUpLegalCaseService.createNotification(
                 "Document status changed",
                 "Document " + document.get().getTitle() +
                         "\n status changed to " + document.get().getStatus(),
-                        consultation.get().getClientId(),
-                        consultation.get().getId()
+                consultationResource.get().clientId(),
+                consultationResource.get().id()
         );
 
         documentsRepository.save(document.get());

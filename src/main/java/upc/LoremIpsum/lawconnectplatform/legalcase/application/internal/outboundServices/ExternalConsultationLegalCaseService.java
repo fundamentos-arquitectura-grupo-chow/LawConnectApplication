@@ -16,12 +16,12 @@ public class ExternalConsultationLegalCaseService {
         this.consultationContextFacade = consultationContextFacade;
     }
 
-    public Optional<Consultation> getConsultationById(Long consultationId){
-        return consultationContextFacade.getConsultationById(consultationId);
-    }
+    public Optional<ConsultationResource> getConsultationResourceById(Long consultationId) {
+        Optional<Consultation> consultationOptional = consultationContextFacade.getConsultationById(consultationId);
 
-    public Optional<ConsultationResource> createConsultationResource(Consultation consultation){
-        return consultationContextFacade.createConsultationResource(consultation);
+        if (consultationOptional.isPresent()) {
+            return consultationContextFacade.createConsultationResource(consultationOptional.get());
+        }
+        return Optional.empty();
     }
-
 }

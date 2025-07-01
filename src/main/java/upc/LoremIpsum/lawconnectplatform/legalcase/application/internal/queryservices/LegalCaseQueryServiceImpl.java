@@ -16,11 +16,9 @@ import java.util.Optional;
 public class LegalCaseQueryServiceImpl implements LegalCaseQueryService {
 
     private final LegalCaseRepository legalCaseRepository;
-    private final ExternalConsultationLegalCaseService externalConsultationLegalCaseService;
 
-    public LegalCaseQueryServiceImpl(LegalCaseRepository legalCaseRepository, ExternalConsultationLegalCaseService externalConsultationLegalCaseService) {
+    public LegalCaseQueryServiceImpl(LegalCaseRepository legalCaseRepository) {
         this.legalCaseRepository = legalCaseRepository;
-        this.externalConsultationLegalCaseService = externalConsultationLegalCaseService;
     }
 
     @Override
@@ -35,7 +33,11 @@ public class LegalCaseQueryServiceImpl implements LegalCaseQueryService {
 
     @Override
     public Optional<LegalCase> handle(GetLegalCaseByConsultationIdQuery query) {
-        var consultation = externalConsultationLegalCaseService.getConsultationById(query.consultationId());
-        return legalCaseRepository.findByConsultation(consultation.get());
+        List<LegalCase> legalCases = legalCaseRepository.findByConsultationId(query.consultationId());
+
+        if (legalCases.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(legalCases.get(0));
     }
 }

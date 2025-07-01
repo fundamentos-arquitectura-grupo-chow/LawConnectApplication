@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
     List<Payment> findAllByClientId(Long clientId);
-    List<Payment> findAllByConsultation(Consultation consultationId);
+    List<Payment> findAllByConsultationId(Long consultationId);
 }
