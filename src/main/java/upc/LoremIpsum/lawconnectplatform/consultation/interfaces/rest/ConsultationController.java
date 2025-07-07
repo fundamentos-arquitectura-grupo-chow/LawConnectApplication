@@ -20,7 +20,7 @@ import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.
 import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.resources.CreateConsultationResource;
 import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.transform.ConsultationResourceFromEntityAssembler;
 import upc.LoremIpsum.lawconnectplatform.consultation.interfaces.rest.transform.CreateConsultationCommandFromResourceAssembler;
-import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.aggregates.Payment;
+
 
 import java.util.List;
 import java.util.stream.Collectors;

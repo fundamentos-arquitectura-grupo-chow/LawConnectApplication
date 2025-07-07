@@ -1,6 +1,5 @@
 package upc.LoremIpsum.lawconnectplatform.feeing.domain.model.aggregates;
 
-import upc.LoremIpsum.lawconnectplatform.consultation.domain.model.aggregates.Consultation;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.commands.CompletePaymentCommand;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.commands.CreatePaymentCommand;
 import upc.LoremIpsum.lawconnectplatform.feeing.domain.model.events.PaymentCompletedEvent;

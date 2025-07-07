@@ -33,7 +33,6 @@ public class ExternalPaymentConsultationServices {
         return paymentContextFacade.createPaymentListResource(payments);
     }
 
-    // Agregar este método para obtener pagos por consultationId
     public List<Payment> getPaymentsByConsultationId(Long consultationId) {
         return paymentContextFacade.getPaymentsByConsultationId(consultationId);
     }
